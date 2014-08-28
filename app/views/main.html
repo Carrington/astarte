@@ -1,0 +1,49 @@
+<section id="app-header">
+	<header id="masthead"> 
+		Placeholder for a real masthead
+	</header>
+</section>
+
+<section id="app-menu">
+	<aside>
+		<menu id="command-menu">
+			<select id="state" ng-model="state">
+				<option ng-repeat="(state,disable) in states" value="{{state}}" ng-disabled="{{disable}}">{{state}}</option>
+			</select>
+			<select id="county" ng-model="county">
+				<option ng-repeat="{county,disable} in counties" value="{{county}}" ng-disabled="{{disable}}">{{county}}</option>
+			</select>
+			<select id="city" ng-model="city">
+				<option ng-repeat="{city,disable} in cities" value="{{city}}" ng-disabled="{{disable}}">{{city}}</option>
+			</select>
+			<div class="control-group" id="method-control-group">
+				<span class="control-group-label">Waste Management Modes</span>
+				<label for="recycling">Recycling</label>
+				<input type="checkbox" ng-model="recycling" id="recycling" />
+				<label for="compost">Composting</label>
+				<input type="checkbox" ng-model="composting" id="composting" />
+				<label for="sustainable-waste">Sustainable Local Waste Mgmt</label>
+				<input type="checkbox" ng-model="sustainable-waste" id="sustainable-waste" />
+			</div>	
+		</menu>
+		<nav>
+			<ul>
+				<li>
+					<a>About</a>
+				</li>
+				<li>
+					<a>Donate</a>
+				</li>	
+			</ul>
+		</nav>
+	</aside>
+</section>
+
+<section id="app">
+	<input type="text" name="search" id="search" ng-model="materials" <placeholder="Search for materials..." />
+	
+</section>
+
+<section id="footer">
+
+</section>
