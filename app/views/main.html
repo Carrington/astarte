@@ -41,7 +41,7 @@
 
 <section id="app">
 	<input type="text" name="search" id="search" ng-model="materials" <placeholder="Search for materials..." />
-	
+	<div id="no-results" ng-show="!materials.length && searched">No Results! Consider <a>adding this material</a>!</div>
 </section>
 
 <section id="footer">
