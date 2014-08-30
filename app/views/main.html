@@ -1,6 +1,6 @@
 <section id="app-header">
 	<header id="masthead"> 
-		Placeholder for a real masthead
+		<h1>Masthead Placenholder</h1>
 	</header>
 </section>
 
@@ -11,10 +11,10 @@
 				<option ng-repeat="(state,disable) in states" value="{{state}}" ng-disabled="{{disable}}">{{state}}</option>
 			</select>
 			<select id="county" ng-model="county">
-				<option ng-repeat="{county,disable} in counties" value="{{county}}" ng-disabled="{{disable}}">{{county}}</option>
+				<option ng-repeat="(county,disable) in counties" value="{{county}}" ng-disabled="{{disable}}">{{county}}</option>
 			</select>
 			<select id="city" ng-model="city">
-				<option ng-repeat="{city,disable} in cities" value="{{city}}" ng-disabled="{{disable}}">{{city}}</option>
+				<option ng-repeat="(city,disable) in cities" value="{{city}}" ng-disabled="{{disable}}">{{city}}</option>
 			</select>
 			<div class="control-group" id="method-control-group">
 				<span class="control-group-label">Waste Management Modes</span>
@@ -42,6 +42,15 @@
 <section id="app">
 	<input type="text" name="search" id="search" ng-model="materials" <placeholder="Search for materials..." />
 	<div id="no-results" ng-show="!materials.length && searched">No Results! Consider <a>adding this material</a>!</div>
+	<aside id='service-summary'>
+		<h2>Services offered in your area...</h2>
+
+		<ul>
+			<li ng-repeat="(id,name,summary) in services">
+				<strong id="service-{{id}}">{{name}}</strong> - <span>{{summary}}</span>
+			</li>
+		</ul>
+	</aside>
 </section>
 
 <section id="footer">
