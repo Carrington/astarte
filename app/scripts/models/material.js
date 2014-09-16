@@ -2,7 +2,7 @@
 
 var module = angular.module( 'astarteApp.models' [ 'astarteApp.resource' ] );
 
-module.factory('Material', ['Resource', function ($resource) { 
+module.factory('MaterialFactory', ['Resource', function ($resource) { 
   return $resource('/api/materials/:id', {
     id: '@id',
   });
