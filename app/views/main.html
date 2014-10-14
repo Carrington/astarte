@@ -1,58 +1,66 @@
-<section id="app-header">
-	<header id="masthead"> 
-		<h1>Masthead Placenholder</h1>
-	</header>
-</section>
+<div class="row">
+	<section id="app-menu" class="col-md-4">
+		<aside class="well sidebar-nav">
+			<menu id="command-menu" class="nav">
+				<form>
+					<fieldset>
+						<select id="state" ng-model="state">
+							<option ng-repeat="(state,disable) in states" value="{{state}}" ng-disabled="{{disable}}">{{state}}</option>
+						</select>
+						<select id="county" ng-model="county">
+							<option ng-repeat="(county,disable) in counties" value="{{county}}" ng-disabled="{{disable}}">{{county}}</option>
+						</select>
+						<select id="city" ng-model="city">
+							<option ng-repeat="(city,disable) in cities" value="{{city}}" ng-disabled="{{disable}}">{{city}}</option>
+						</select>
+						<div class="control-group" id="method-control-group">
+							<span class="control-group-label">Waste Management Modes</span>
+							<label for="recycling">Recycling</label>
+							<input type="checkbox" ng-model="recycling" id="recycling" />
+							<label for="compost">Composting</label>
+							<input type="checkbox" ng-model="composting" id="composting" />
+							<label for="sustainable-waste">Sustainable Local Waste Mgmt</label>
+							<input type="checkbox" ng-model="sustainable-waste" id="sustainable-waste" />
+						</div>	
+					</fieldset>
+				</form>
+			</menu>
+			<nav>
+				<ul class="nav nav-list">
+					<li>
+						<a>About</a>
+					</li>
+					<li>
+						<a>Donate</a>
+					</li>	
+				</ul>
+			</nav>
+		</aside>
+	</section>
 
-<section id="app-menu">
-	<aside>
-		<menu id="command-menu">
-			<select id="state" ng-model="state">
-				<option ng-repeat="(state,disable) in states" value="{{state}}" ng-disabled="{{disable}}">{{state}}</option>
-			</select>
-			<select id="county" ng-model="county">
-				<option ng-repeat="(county,disable) in counties" value="{{county}}" ng-disabled="{{disable}}">{{county}}</option>
-			</select>
-			<select id="city" ng-model="city">
-				<option ng-repeat="(city,disable) in cities" value="{{city}}" ng-disabled="{{disable}}">{{city}}</option>
-			</select>
-			<div class="control-group" id="method-control-group">
-				<span class="control-group-label">Waste Management Modes</span>
-				<label for="recycling">Recycling</label>
-				<input type="checkbox" ng-model="recycling" id="recycling" />
-				<label for="compost">Composting</label>
-				<input type="checkbox" ng-model="composting" id="composting" />
-				<label for="sustainable-waste">Sustainable Local Waste Mgmt</label>
-				<input type="checkbox" ng-model="sustainable-waste" id="sustainable-waste" />
-			</div>	
-		</menu>
-		<nav>
-			<ul>
-				<li>
-					<a>About</a>
-				</li>
-				<li>
-					<a>Donate</a>
-				</li>	
-			</ul>
-		</nav>
-	</aside>
-</section>
+	<section id="app" class="col-md-5">
+		<main>
+			<input type="text" name="search" id="search" ng-model="materials" placeholder="Search for materials..." />
+			<div id="no-results" ng-show="!materials.length && searched" class="alert alert-warning">No Results! Consider <a href ng-click="openAddMaterialDialogue()">adding this material</a>!</div>
+			<aside id='service-summary'>
+				<h2>Services offered in your area...</h2>
 
-<section id="app">
-	<input type="text" name="search" id="search" ng-model="materials" <placeholder="Search for materials..." />
-	<div id="no-results" ng-show="!materials.length && searched">No Results! Consider <a>adding this material</a>!</div>
-	<aside id='service-summary'>
-		<h2>Services offered in your area...</h2>
-
-		<ul>
-			<li ng-repeat="(id,name,summary) in services">
-				<strong id="service-{{id}}">{{name}}</strong> - <span>{{summary}}</span>
-			</li>
-		</ul>
-	</aside>
-</section>
-
-<section id="footer">
-
-</section>
+				<ul>
+					<li ng-repeat="(id,name,summary) in services">
+						<strong id="service-{{id}}">{{name}}</strong> - <span>{{summary}}</span>
+					</li>
+				</ul>
+			</aside>
+			<details id="saved-list">
+				<summary>
+					Your saved materials...	
+				</summary>
+				<ol>
+					<li ng-repeat="(id,name) in user-materials">
+					<a id="material-{{id}}" href ng-click="openUserMaterialDialogue(); selected-user-material={{id}}">{{name}}</a>
+					</li>
+				</ol>
+			</details>
+		</main>
+	</section>
+</div>
