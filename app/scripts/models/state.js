@@ -1,9 +1,10 @@
 'use strict';
 
-var module = angular.module( 'astarteApp.models' [ 'astarteApp.resource' ] );
+angular.module( 'astarteApp.models')
+.factory('StateFactory', ['$resource', function ($resource) { 
+  return $resource('/api/states/:id',
+	  { id: '@id' },
+	  { 'query': { method: 'GET' }}
 
-module.factory('StateFactory', ['Resource', function ($resource) { 
-  return $resource('/api/states/:id', {
-    id: '@id',
-  });
+	  );
 }]);

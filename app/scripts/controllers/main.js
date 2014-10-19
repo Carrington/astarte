@@ -8,13 +8,26 @@
  * Controller of the astarteApp
  */
 angular.module('astarteApp')
-  .controller('MainCtrl', function ($scope, $location, CityFactory, CountyFactory, StateFactory, MaterialFactory, MethodFactory) {
-  
-    var loadStates = function () {
-      $scope.states = StateFactory.query();
-    }
+  .controller('MainCtrl', 
+  function ($scope, $location, CityFactory, CountyFactory, StateFactory, MaterialFactory, MethodFactory) {
+   
+  var loadStates,
+      loadCounties,
+      loadCities,
+      loadMaterials,
+      loadMethods,
+      init;
 
-    var loadCounties = function () {
+  loadStates = function () {
+      StateFactory.query().$promise.then(function(data) { 
+		$scope.states = data["_embedded"]; 
+	      }, function(error) {
+                //TODO display some kinda error
+	      });
+     
+  }
+
+  loadCounties = function () {
       var queryParams = {};
 
       if (typeof $scope.selectedState !== 'undefined') {
@@ -24,7 +37,7 @@ angular.module('astarteApp')
       $scope.counties = CountyFactory.query();
     }
 
-    var loadCities = function () {
+  loadCities = function () {
       var queryParams = {};
     
       if (typeof $scope.selectedState !== 'undefined') {
@@ -38,11 +51,11 @@ angular.module('astarteApp')
       $scope.cities = CityFactory.query();
     }
 
-    var loadMaterials = function () {
+  loadMaterials = function () {
 	$scope.materials = MaterialFactory.query();
     }
 
-    var loadMethods = function () {
+  loadMethods = function () {
     	var queryParams = {
           'state': $scope.selectedState,
 	  'county': $scope.selectedCounty,
@@ -51,7 +64,7 @@ angular.module('astarteApp')
 	$scope.methods = MethodFactory.query(queryParams);
     }
 
-    var init = function () {
+   init = function () {
 	loadStates();
 	loadMaterials();
     }
